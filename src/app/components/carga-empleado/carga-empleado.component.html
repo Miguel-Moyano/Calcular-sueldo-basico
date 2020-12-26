@@ -1,0 +1,108 @@
+<!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="assets/images/icon.png" alt="" width="40" height="45" class="d-inline-block align-top"> Sistema para Calcular tu sueldo
+        </a>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Buscar empleado" aria-label="Search" #termino>
+            <button class="btn btn-outline-success" type="submit" (click)="buscar(termino.value)">Buscar</button>
+        </form>
+
+
+    </div>
+
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="container caja ">
+                <form #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
+                    <div class="formLeft">
+                        <h3>Ingrese sus datos</h3>
+                        <p>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="nuevo_empleado.nombre" required>
+                            <span class="campo_obligatorio" *ngIf="nombre.touched && !nombre.valid"> El nombre es obligatorio!
+                </span>
+
+                        </p>
+
+
+
+                        <p>
+                            <label for="descripcion">Horas Normales</label>
+                            <input class="inputnum" type="number" name="hs_normales" #hs_normales="ngModel" [(ngModel)]="nuevo_empleado.hs_normales">
+
+                        </p>
+                        <p>
+                            <label for="descripcion">Horas Extra</label>
+                            <input class="inputnum" type="number" name="hs_extras" #hs_normales="ngModel" [(ngModel)]="nuevo_empleado.hs_extras">
+
+                        </p>
+
+
+                    </div>
+
+                    <p>
+                        <input type="submit" name="" value="Aceptar" [disabled]="!empleadoForm.form.valid">
+                    </p>
+                </form>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="container ">
+                <app-tabla></app-tabla>
+
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="container ">
+                <h4>Empleado con Mayor sueldo</h4>
+
+                <table class="table tabla table-secondary ">
+
+
+                    <thead>
+                        <tr>
+                            <th scope="col">N°</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Horas Normal</th>
+                            <th scope="col">Horas Extras</th>
+                            <th scope="col">Sueldo</th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">{{1}}</th>
+                                <td>{{EmpleadoMaxSueldo.nombre}}</td>
+                                <td>{{EmpleadoMaxSueldo.hs_normales}}</td>
+                                <td>{{EmpleadoMaxSueldo.hs_extras}}</td>
+                                <td>{{EmpleadoMaxSueldo.sueldo|currency}}</td>
+
+
+
+                            </tr>
+
+
+                        </tbody>
+
+                </table>
+
+
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="container ">
+                <div *ngIf="resp">
+                    <h4>Resultado de la busqueda</h4>
+                    <p>Nombre: {{resp.nombre}} </p>
+                    <p>Nombre: {{resp.sueldo}} </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
