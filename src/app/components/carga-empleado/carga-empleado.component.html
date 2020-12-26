@@ -17,8 +17,11 @@
     <div class="row">
         <div class="col-6">
             <div class="container caja ">
+
+
                 <form #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
                     <div class="formLeft">
+
                         <h3>Ingrese sus datos</h3>
                         <p>
                             <label for="nombre">Nombre</label>
@@ -48,6 +51,9 @@
                         <input type="submit" name="" value="Aceptar" [disabled]="!empleadoForm.form.valid">
                     </p>
                 </form>
+                <small>
+                    *Valor de Hora Normal: {{valorhs|currency}}
+                </small>
             </div>
         </div>
         <div class="col-6">

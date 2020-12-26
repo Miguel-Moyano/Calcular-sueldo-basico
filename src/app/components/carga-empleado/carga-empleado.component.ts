@@ -24,7 +24,7 @@ public resp: Empleado;
     
     private empleadoService: EmpleadoServiceService
   ) {
-    this.valorhs= 100; 
+    this.valorhs= 150; 
     this.nuevo_empleado= new Empleado(null, '',null,null, null);
     this.getList();
     this.sueldoMax();

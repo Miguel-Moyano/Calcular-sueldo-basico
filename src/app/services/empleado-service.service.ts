@@ -16,7 +16,15 @@ export class EmpleadoServiceService {
   cargarStorage(){
     if(localStorage.getItem('Empleados')){
       this.ListaEmpleados= JSON.parse(localStorage.getItem('Empleados'));
+     //this.ordenar(this.ListaEmpleados);
+      this.ListaEmpleados.sort(function (a, b){
+      return (b.sueldo - a.sueldo)
+  })
+
+
     }
+    
+    
      else{
        this.ListaEmpleados= [];
      }
@@ -79,6 +87,21 @@ export class EmpleadoServiceService {
           console.log(empleadoMax);
           return empleadoMax;
           
+        }
+
+        ordenar(arreglo:Empleado[]){
+          for (let i=0; i<arreglo.length; i++){
+            for (let j=0; j<arreglo.length; j++){
+              let aux :Empleado;
+              if(arreglo[i].sueldo > arreglo[j].sueldo){
+                aux= arreglo[i];
+                arreglo[i]= arreglo[j];
+                arreglo[j]= aux;
+              }
+            }
+            
+          }
+
         }
 
 
